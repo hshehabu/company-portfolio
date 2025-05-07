@@ -188,7 +188,7 @@
     					<h2>Drilling Engineer</h2>
     					<span class="position">Offshore Project</span>
     					<p class="mt-4">Looking for experienced drilling engineers with minimum 10 years offshore experience.</p>
-    					<p><a href="apply.html?position=drilling-engineer" class="btn btn-primary py-3 px-5">Apply Now</a></p>
+    					<p><a href="#" class="btn btn-primary py-3 px-5" data-toggle="modal" data-target="#applicationModal" data-position="Drilling Engineer - Dubai, UAE">Apply Now</a></p>
     				</div>
     			</div>
     			<div class="col-md-4">
@@ -197,7 +197,7 @@
     					<h2>Project Manager</h2>
     					<span class="position">EPC Project</span>
     					<p class="mt-4">Seeking project managers with experience in oil & gas EPC projects. PMP certification required.</p>
-    					<p><a href="apply.html?position=project-manager" class="btn btn-primary py-3 px-5">Apply Now</a></p>
+    					<p><a href="#" class="btn btn-primary py-3 px-5" data-toggle="modal" data-target="#applicationModal" data-position="Project Manager - Aberdeen, UK">Apply Now</a></p>
     				</div>
     			</div>
     			<div class="col-md-4">
@@ -206,13 +206,57 @@
     					<h2>QA/QC Inspector</h2>
     					<span class="position">Refinery Project</span>
     					<p class="mt-4">Quality control inspector needed for major refinery upgrade project. API certifications required.</p>
-    					<p><a href="apply.html?position=qaqc-inspector" class="btn btn-primary py-3 px-5">Apply Now</a></p>
+    					<p><a href="#" class="btn btn-primary py-3 px-5" data-toggle="modal" data-target="#applicationModal" data-position="QA/QC Inspector - Houston, USA">Apply Now</a></p>
     				</div>
     			</div>
     		</div>
     	</div>
     </section>
 
+	<div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-primary">
+					<h5 class="modal-title text-white" id="applicationModalLabel">Job Application</h5>
+					<button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body p-5">
+					<form action="#" method="POST" enctype="multipart/form-data" id="applicationForm">
+						<input type="hidden" name="position" id="position">
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="text" class="form-control py-3" name="fullname" placeholder="Full Name *" required>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<input type="email" class="form-control py-3" name="email" placeholder="Email Address *" required>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" name="message" rows="4" placeholder="Brief Introduction *" required></textarea>
+						</div>
+						<div class="form-group">
+							<label class="d-block">Upload CV (PDF or Word) *</label>
+							<div class="custom-file">
+								<input type="file" class="custom-file-input" name="cv" accept=".pdf,.doc,.docx" required>
+								<label class="custom-file-label">Choose file</label>
+							</div>
+							<small class="form-text text-muted">Maximum file size: 5MB</small>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer border-0 px-5 pb-4">
+					<button type="button" class="btn btn-light py-3 px-4" data-dismiss="modal">Close</button>
+					<button type="submit" form="applicationForm" class="btn btn-primary py-3 px-4">Submit Application</button>
+				</div>
+			</div>
+		</div>
+	  </div>
 
     <section class="ftco-section" id="case-studies-section">
         <div class="container">
@@ -510,6 +554,24 @@
   <script src="js/scrollax.min.js"></script>
   
   <script src="js/main.js"></script>
+
+  <script>
+  $('#applicationModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget);
+    var position = button.data('position');
+    var modal = $(this);
+    modal.find('.modal-title').text('Apply for ' + position);
+    modal.find('#position').val(position);
+  });
+
+  document.querySelectorAll('.custom-file-input').forEach(input => {
+    input.addEventListener('change', function(e) {
+        const fileName = this.files[0].name;
+        const label = this.nextElementSibling;
+        label.textContent = fileName;
+    });
+  });
+  </script>
     
   </body>
 </html>
